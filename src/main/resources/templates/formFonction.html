@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+    
+    <title>Ajout d'une fonction</title>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap-4.1/bootstrap.min.css" th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}"/>
+    <link rel="stylesheet" type="text/css"
+          href="../static/vendor/font-awesome-5/css/fontawesome-all.min.css" th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/mdi-font/css/material-design-iconic-font.min.css" th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}"
+           media="all">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/datatable/dataTables.bootstrap4.min.css" th:href="@{/vendor/datatable/dataTables.bootstrap4.min.css}"
+           media="all">
+
+    <link rel="stylesheet" type="text/css" href="../static/style/style.css" th:href="@{/style/style.css}" > 
+    <link rel="stylesheet" type="text/css" href="../static/style/theme.css" th:href="@{/style/theme.css}" > 
+    <link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css"  th:href="@{/vendor/css-hamburgers/hamburgers.min.css}"
+          media="all">
+
+    <link rel="stylesheet" type="text/css" href="../static/style/main.css" th:href="@{/style/main.css}">
+
+    <script src='vendor/jquery-3.2.1.min.js'></script>
+    <script src='vendor/bootstrap-4.1/popper.min.js'></script>
+    <script src='vendor/bootstrap-4.1/bootstrap.min.js'></script>
+    <script src="vendor/datatable/jquery.dataTables.min.js"
+            type="text/javascript"></script>
+    <script src="vendor/datatable/dataTables.bootstrap4.min.js"
+            type="text/javascript"></script>
+    <script src="vendor/chartjs/Chart.min.js"></script>
+
+</head>
+<body>
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#"> <i
+            class="fas fa-home"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-brand">
+                <a  ></a>
+                <a href="./" class="user-name"  style="color:lightpink;">[[${#httpServletRequest.remoteUser}]]</a>
+                <div id="close-sidebar">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div class="sidebar-header">
+            <div style="text-align: center;">
+                <img class="img logo rounded-circle mb-2" src="https://cours-informatique-gratuit.fr/wp-content/uploads/2014/05/administrateur.png" style="width: 90px ;   ">
+                </div>
+                <body  onload="startTime()">
+                <div style="text-align:center"; id="txt"></div>
+                <script>
+                    function startTime() {
+                        const today = new Date();
+                        let h = today.getHours();
+                        let m = today.getMinutes();
+                        let s = today.getSeconds();
+                        m = checkTime(m);
+                        s = checkTime(s);
+                        document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+                        setTimeout(startTime, 1000);
+                    }
+
+                    function checkTime(i) {
+                        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                        return i;
+                    }
+                </script>
+            </div>
+
+            <!-- sidebar-header  -->
+
+            <!-- sidebar-search  -->
+            <div class="sidebar-menu">
+               <ul>
+
+                    <li style= "margin-top:  5px ; margin-left: 15px ; font-size: 18px"><i
+                            class="zmdi zmdi-hc-1x zmdi-accounts-alt"></i>Ressources humaines</li>
+                    <li><a href="Index" ><i
+                            class="zmdi zmdi-hc-1x zmdi-home"></i>Home</a></li>
+
+                    <li><a href="type" ><i
+                            class="zmdi zmdi-hc-1x zmdi-layers"></i>Type Entite</a></li>
+                    <li><a href="entite" ><i
+                            class="zmdi zmdi-hc-1x zmdi-layers"></i>Entite</a></li>
+
+                    <li><a href="employe" ><i
+                            class="zmdi zmdi-hc-1x zmdi-account-o"></i>Employée</a></li>
+<li><a href="fonction" ><i
+                            class="zmdi zmdi-pin-off"></i>Fonction</a></li>
+                             <li><a href="EmplFonct" ><i
+                            class="zmdi zmdi-pin-off"></i>Employe_Fonction</a></li>
+                            <li><a href="filiere" ><i
+                            class="zmdi zmdi-pin-off"></i>Filiére</a></li>
+                            <li><a href="diplome" ><i
+                            class="zmdi zmdi-pin-off"></i>Diplome</a></li>
+                             <li><a href="EmplDiplm" ><i
+                            class="zmdi zmdi-pin-off"></i>Employe_Diplome</a></li>
+
+                  <li><a href="typeConge" ><i
+                            class="zmdi zmdi-pin-off"></i>Type de congé</a></li>
+                    <li><a href="conge" ><i
+                            class="zmdi zmdi-pin-off"></i>Congé</a></li>
+
+                    <li><a href="./index.html" ><i
+                            class="zmdi zmdi-hc-1x zmdi-assignment-check"></i>Présence</a></li>
+
+                    <li><a href="./index.html" ><i
+                            class="zmdi zmdi-hc-1x zmdi-star"></i>Note</a></li>
+
+                    <li><a href="./index.html" ><i
+                            class="zmdi zmdi-hc-1x zmdi-card"></i>Paie</a></li>
+
+                    <li>
+
+                        <a href="/login?logout"> <i class="fa fa-power-off"></i> <span>Logout</span>
+                        </a>
+                        </body>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-content  -->
+        <div class="sidebar-footer">
+            <a > <i class=""></i> <span></span>
+            </a>
+        </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <div >
+	 <div><strong>Ajout d'une fonction</strong></div>
+		<div  >
+		<form th:action="@{SaveFonction}" method="post" th:object="${fonction}" >
+		<div class="form-group">
+			<label>Nom : </label>
+			<input type="text" th:field="*{nom}" class="form-control"/>
+			<span class="text-danger" th:errors="*{nom}"></span>
+		</div>
+		
+		<div>
+		<button type="submit" class="btn btn-primary">Ajouter</button>
+		</div>
+		
+		</form>
+		</div>
+	</div>
+
+    </main>
+    
+</div>
+<!-- page-wrapper -->
+<script src="script/redirect.js"></script>
+<script src="vendor/slick/slick.min.js">
+
+</script>
+<script src="vendor/wow/wow.min.js"></script>
+<script src="vendor/animsition/animsition.min.js"></script>
+<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+
+</script>
+<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="vendor/counter-up/jquery.counterup.min.js">
+
+</script>
+<script src="vendor/circle-progress/circle-progress.min.js"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="vendor/select2/select2.min.js">
+
+</script>
+<script src="script/index.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
